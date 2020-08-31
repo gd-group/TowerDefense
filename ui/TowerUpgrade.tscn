@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/towerDefense_tilesheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/circle.png" type="Texture" id=2]
+[ext_resource path="res://script/TowerBuild.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 104.409
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 1024, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 1088, 0, 64, 64 )
+
+[node name="TowerUpgrade" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1024.0
+margin_bottom = -600.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Circle" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Circle"]
+modulate = Color( 0, 0, 0, 0.737255 )
+scale = Vector2( 0.644487, 0.644487 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Circle"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Upgrade" type="TextureButton" parent="."]
+margin_left = -33.7248
+margin_top = -93.688
+margin_right = 31.2752
+margin_bottom = -28.688
+texture_normal = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpgradeCost" type="Label" parent="Upgrade"]
+margin_left = 70.1648
+margin_top = 28.22
+margin_right = 111.165
+margin_bottom = 42.22
+text = "$100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sell" type="TextureButton" parent="."]
+margin_left = -34.0
+margin_top = 30.1832
+margin_right = 30.0
+margin_bottom = 94.1832
+texture_normal = SubResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SellCost" type="Label" parent="Sell"]
+margin_left = 67.3153
+margin_top = 24.1326
+margin_right = 108.315
+margin_bottom = 38.1326
+text = "$100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="input_event" from="Circle" to="." method="_on_Circle_input_event"]
+[connection signal="button_up" from="Upgrade" to="." method="_on_TowerUpgrade_button_up"]
+[connection signal="button_up" from="Sell" to="." method="_on_TowerSell_button_up"]

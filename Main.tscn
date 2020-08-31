@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/TowerBuild.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LevelMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://script/Main.gd" type="Script" id=3]
+[ext_resource path="res://ui/TowerUpgrade.tscn" type="PackedScene" id=4]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="MapView" type="Node2D" parent="."]
+scale = Vector2( 0.7, 0.7 )
+
+[node name="LevelMap" parent="MapView" instance=ExtResource( 2 )]
+
+[node name="TowerBuild" parent="MapView" instance=ExtResource( 1 )]
+margin_left = -2.17899
+margin_top = 0.729207
+margin_right = -2.17899
+margin_bottom = 0.729207
+
+[node name="TowerUpgrade" parent="MapView" instance=ExtResource( 4 )]
+
+[node name="MobTimer" type="Timer" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 853.0
+margin_top = 2.0
+margin_right = 1022.0
+margin_bottom = 585.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 6.33978
+margin_top = 4.87674
+margin_right = 46.3398
+margin_bottom = 18.8767
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Life:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Life" type="Label" parent="Panel"]
+margin_left = 48.3398
+margin_top = 4.87674
+margin_right = 69.3398
+margin_bottom = 18.8767
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="click_tile" from="MapView/LevelMap" to="." method="_on_LevelMap_click_tile"]
+[connection signal="build_tower" from="MapView/TowerBuild" to="." method="_on_TowerBuild_build_tower"]
+[connection signal="tower_action" from="MapView/TowerUpgrade" to="." method="_on_TowerUpgrade_tower_action"]

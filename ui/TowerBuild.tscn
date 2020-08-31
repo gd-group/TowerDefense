@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/towerDefense_tilesheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/circle.png" type="Texture" id=2]
+[ext_resource path="res://script/TowerBuild.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 71.758
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 1216, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 1280, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 1280, 512, 64, 64 )
+
+[node name="TowerBuild" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1024.0
+margin_bottom = -600.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Circle" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Circle"]
+modulate = Color( 0, 0, 0, 0.568627 )
+scale = Vector2( 0.444487, 0.444487 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Circle"]
+visible = false
+shape = SubResource( 4 )
+
+[node name="TowerButton1" type="TextureButton" parent="."]
+margin_left = -23.2613
+margin_top = -67.878
+margin_right = 21.7387
+margin_bottom = -22.878
+texture_normal = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TowerButton2" type="TextureButton" parent="."]
+margin_left = 23.6099
+margin_top = -24.979
+margin_right = 68.6099
+margin_bottom = 20.021
+texture_normal = SubResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TowerButton3" type="TextureButton" parent="."]
+margin_left = -67.0
+margin_top = -25.0
+margin_right = -22.0
+margin_bottom = 20.0
+texture_normal = SubResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="input_event" from="Circle" to="." method="_on_Circle_input_event"]
+[connection signal="button_up" from="TowerButton1" to="." method="_on_TowerButton1_button_up"]
+[connection signal="button_up" from="TowerButton2" to="." method="_on_TowerButton2_button_up"]
+[connection signal="button_up" from="TowerButton3" to="." method="_on_TowerButton3_button_up"]

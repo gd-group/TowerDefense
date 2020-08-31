@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/towerDefense_tilesheet.png" type="Texture" id=1]
+[ext_resource path="res://script/Mob.gd" type="Script" id=2]
+[ext_resource path="res://assets/square.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 960, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 1024, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 1088, 640, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 1152, 640, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 14.0657
+
+[node name="Mob" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, -19 )
+
+[node name="Progress" type="TextureProgress" parent="Position2D"]
+modulate = Color( 0.854902, 0, 0, 1 )
+margin_left = -16.0
+margin_right = -8.0
+margin_bottom = 8.0
+rect_scale = Vector2( 4, 0.4 )
+size_flags_horizontal = 3
+value = 100.0
+texture_progress = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

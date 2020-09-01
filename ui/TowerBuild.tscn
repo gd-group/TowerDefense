@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/circle.png" type="Texture" id=2]
 [ext_resource path="res://script/TowerBuild.gd" type="Script" id=3]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=1]
 radius = 71.758
 
 [sub_resource type="AtlasTexture" id=2]
@@ -15,7 +15,7 @@ region = Rect2( 1216, 640, 64, 64 )
 atlas = ExtResource( 1 )
 region = Rect2( 1280, 640, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
 region = Rect2( 1280, 512, 64, 64 )
 
@@ -38,7 +38,7 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Circle"]
 visible = false
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="TowerButton1" type="TextureButton" parent="."]
 margin_left = -23.2613
@@ -67,7 +67,7 @@ margin_left = -67.0
 margin_top = -25.0
 margin_right = -22.0
 margin_bottom = 20.0
-texture_normal = SubResource( 1 )
+texture_normal = SubResource( 4 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

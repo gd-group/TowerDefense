@@ -42,19 +42,28 @@ func sort_mob(mob1: Mob, mob2: Mob):
 	return mob1.distance < mob2.distance
 	
 func find_target():
+#	if len(within_mobs) > 0:
+#		# sort mobs by path distance in ascending order
+#		within_mobs.sort_custom(self, "sort_mob")
+#	target = within_mobs[-1] if len(within_mobs) > 0 else null
+	target = null
 	if len(within_mobs) > 0:
-		within_mobs.sort_custom(self, "sort_mob")
-	target = within_mobs[-1] if len(within_mobs) > 0 else null
+		var max_dis = 0
+		for mob in within_mobs:
+			if mob.distance > max_dis:
+				target = mob
+				max_dis = mob.distance
 	if target:
 		if $ShootTimer.is_stopped():
 			shoot()
 
 func upgrade(cost: int):
-	var shape: CircleShape2D = $Range/RangeShape.shape
-	radius = radius * 1.2
-	shape.radius = radius
-	var sp_scale = radius / 160.0
-	$Range/RangeSprite.scale = Vector2(sp_scale, sp_scale)
+#	var shape: CircleShape2D = $Range/RangeShape.shape
+#	radius = radius * 1.2
+#	shape.radius = radius
+#	var sp_scale = radius / 160.0
+#	$Range/RangeSprite.scale = Vector2(sp_scale, sp_scale)
+	$Range.scale += Vector2(0.1, 0.1)
 	
 func shoot():
 	if not target:

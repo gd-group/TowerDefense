@@ -4,79 +4,79 @@
 [ext_resource path="res://script/Tower.gd" type="Script" id=2]
 [ext_resource path="res://assets/circle.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 1216, 448, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
-region = Rect2( 1280, 448, 64, 64 )
+region = Rect2( 1216, 448, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
-region = Rect2( 1344, 448, 64, 64 )
+region = Rect2( 1280, 448, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
+region = Rect2( 1344, 448, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
 region = Rect2( 1408, 448, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 1280, 640, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 1216, 640, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
 region = Rect2( 1280, 512, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 1216, 640, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 6 ) ],
+"frames": [ SubResource( 7 ) ],
 "loop": true,
 "name": "tower1",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 7 ) ],
-"loop": true,
-"name": "tower0",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 10 ) ],
+"frames": [ SubResource( 8 ) ],
 "loop": true,
 "name": "tower2",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "tower0",
+"speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=11]
 radius = 160.0
 
 [node name="Tower" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 11 )
+shape = SubResource( 1 )
 
 [node name="TowerBase" type="AnimatedSprite" parent="."]
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 
 [node name="TowerDir" type="Node2D" parent="."]
 
 [node name="TowerSprite" type="AnimatedSprite" parent="TowerDir"]
-frames = SubResource( 8 )
+frames = SubResource( 10 )
 animation = "tower2"
 
 [node name="ShootPoint" type="Position2D" parent="TowerDir"]
@@ -88,7 +88,7 @@ position = Vector2( 0, -15 )
 
 [node name="RangeShape" type="CollisionShape2D" parent="Range"]
 visible = false
-shape = SubResource( 9 )
+shape = SubResource( 11 )
 
 [node name="RangeSprite" type="Sprite" parent="Range"]
 modulate = Color( 0.0705882, 0.960784, 1, 0.372549 )

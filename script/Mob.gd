@@ -16,6 +16,7 @@ var offset = 0.0
 var bar_pos = Vector2()
 var total_hp = 0
 
+# get position in path with distance and y-offset
 func get_path_position(dis: float) -> Vector2:
 	# update path follow offset as distance
 	path_follow.offset = dis
@@ -46,9 +47,11 @@ func _ready() -> void:
 #	pass
 
 func _process(delta: float) -> void:
-	var mtx = transform.affine_inverse()
-	$Position2D.position = mtx.basis_xform(bar_pos)
-	$Position2D.rotation = mtx.get_rotation()
+	if $Position2D/Progress.visible:
+		# reverse rotation of progress bar using inverse transform matrix
+		var mtx = transform.affine_inverse()
+		$Position2D.position = mtx.basis_xform(bar_pos)
+		$Position2D.rotation = mtx.get_rotation()
 	
 func _physics_process(delta: float) -> void:
 	distance += delta * speed
@@ -61,9 +64,13 @@ func _physics_process(delta: float) -> void:
 		emit_signal("reach_end", 1)
 		queue_free()
 
+# get advanced position in path where shooting from position and speed
 func advanced_position(from_pos: Vector2, from_speed: float):
+	# distance from from_pos to mob position
 	var dis = from_pos.distance_to(position)
+	# approximate time to hit mob
 	var t = dis / from_speed
+	# approximate advanced distance when bullet hit
 	var advanced_dis = distance + speed * t
 	return get_path_position(advanced_dis)
 	
